@@ -1,0 +1,146 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+.product {
+  display:flex;
+  // width:100%;
+  margin:0 auto;
+  flex-flow:column;
+  align-items:center;
+  // justify-content:center;
+  // background:rgba(255,255,255,.1);
+  // background-color:#000;
+  padding:10px!important;
+  // box-shadow:2px 2px 10px rgba(0,0,0,.5);
+  & > .product-image {
+    display:flex;
+    padding-bottom:20px;
+    flex-flow:column;
+    align-items: left;
+    justify-content: center;
+  }
+  & > .product-info {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+      // flex-grow:1;
+    // width:50%;
+    h1 {
+      color:$accentColor;
+      font-weight:normal;
+      font-variant:small-caps;
+    }
+  }
+}
+hr {
+
+  margin-bottom: -4px;
+  width:100%;
+  border:1px solid rgba(225,225,225,0.20);
+
+}
+#product-info{
+  // margin:0 auto;
+  margin:calc(100% - 96%);
+  // text-align:center;
+}
+
+.product-information{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+
+#product-image {
+  display:flex;
+  float:left;
+  margin-right: 2%;
+  // max-height:350px;
+}
+#csssucks {
+  overflow:hidden;
+  // height:100%;
+  // width:100%;
+  // max-height:350px;
+}
+#image-selector {
+  display:flex;
+  flex-direction:column;
+  align-items: flex-start;
+  justify-content: space-around;
+  overflow: auto;
+  padding-right:15px;
+  img{
+    width:60px;
+    height:60px;
+    margin:5px;
+    box-sizing:border-box;
+    border:2px solid rgba(255,255,255, 0.4);
+    box-shadow: 0 0 2px rgba(0,0,0,0.8);
+    &:hover{
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.8);
+    }
+  }
+}
+#selected-image{
+  width:350px;
+  height:350px;
+  // border:2px solid rgba(255,255,255, 0.8);
+  margin-left:10px;
+}
+
+#product-description{
+  line-height: 30px;
+  h1{
+    border-bottom:2px solid $accentColor;
+    display: inline-block;
+    padding:0px 20px;
+  }
+}
+#inner-description {
+  padding-top:20px;
+  p {
+    text-indent:20px;
+  }
+}
+
+#controls {
+  padding:20px;
+}
+#product-list {
+  display:flex;
+  margin-top: 45px;
+  // max-height: 280px;
+  flex-grow:1;
+  // flex-direction:column;
+  .product {
+    // width:90%;
+    // flex-grow:1;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    .product-image {
+      margin-right:10px;
+    }
+    h1 {
+      width:100%;
+      border-bottom: 2px solid $accentColor;
+      text-align: center;
+      padding: 10px 0 10px 0;
+      // border-bottom:2px;
+    }
+    span{
+      padding: 10px 0 10px 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+#product-list  {
+  flex-direction:column!important;
+  // max-height:auto!important;
+}
+}

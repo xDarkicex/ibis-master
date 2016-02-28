@@ -1,0 +1,18 @@
+
+<div class='product'>
+  <div class="product-image"><%= image_tag product.images[0].asset(:medium) %></div>
+  <div class='product-information'>
+    <h1><%= product.name %></h1>
+    <span><%= get_price_range(product) %></span>
+    <!-- <div class='inner-description'>
+      <%= raw(product.description) %>
+    </div> -->
+    <a href="<%= product_path(product) %>" class='fancy-button'>Buy</a>
+  </div>
+  <!-- <br/> -->
+  <!-- <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div> -->
+  <!-- <br/> -->
+  <!-- <div id='inner-description'>
+    <%= raw(product.description) %>
+  </div> -->
+</div>

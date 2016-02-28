@@ -1,0 +1,110 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+$button-width:23px;
+#content {
+  display:flex;
+  > * {
+    margin:20px;
+  }
+}
+
+//
+// body{
+//   background: radial-gradient(gray, black);
+// }
+
+#products{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items:center;
+  padding:20px 0px;
+  flex-wrap: wrap;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+  background: rgba(225,225,225, 0.05);
+}
+article.product{
+  transition: all 100ms linear;
+}
+article.product:hover{
+  transform: scale(1.05,1.05);
+}
+#products > div{
+  flex-grow: 1;
+}
+#slider {
+  margin-top: -60px;
+  display:flex;
+  // min-height:480px;
+  flex-flow: row;
+  .slider-image{
+    display:flex;
+    min-height:68vh;
+      background: no-repeat center center;
+      background-size:cover;
+      // background-attachment:cover;
+  }
+  & > i {
+    cursor:pointer;
+    align-self: center;
+    font-size:4em;
+    width:$button-width;
+    z-index: 100;
+    text-align:center;
+    &:first-of-type { margin-right: -$button-width; }
+    &:last-of-type { margin-left: -$button-width; }
+  }
+  & > .slider-body {
+    width:100%;
+    overflow:hidden;
+    .slider-content {
+      // width:100%;
+      // height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-grow:1;
+      // position: relative;
+      .slider-text-content {
+        text-align: center;
+        padding:25px;
+        // text-shadow:0px 0px 5px rgba(0,0,0,1);
+
+        h1 {
+          font-size:15vh;
+        }
+        h1:first-of-type { color:#FFF; }
+        h1:last-of-type { color:$accentColor; }
+        p {
+          margin-bottom:20px;
+        }
+        a {
+          border-radius: 5px;
+          padding: 8px 20px;
+          text-align: center;
+          line-height: 40px;
+          border: 1px solid white;
+          color:white;
+          &:hover {
+            background-color:$accentColor;
+            border:1px solid $accentColor;
+          }
+        }
+
+      }
+    }
+  }
+}
+#social-content {
+  display:flex;
+  width:100vw;
+  align-items:center;
+  justify-content: center;
+}
+#facebook{
+  margin-right: calc(100% - 90%);
+  // flex:1;
+}

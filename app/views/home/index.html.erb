@@ -1,0 +1,62 @@
+<script>
+  $(function (){
+    var $images = $('.slider-image');
+    var iteration = 0;
+    $images.detach();
+    var update = function(){
+      var speed = 300;
+      $('.slider-body').fadeOut(speed, function(){
+        $('.slider-body').html($images[iteration]);
+        $('.slider-body').fadeIn(speed);
+      });
+    }
+    var next = function(){ if(++iteration > $images.length-1) iteration = 0; update(); }
+    $('#slider > i:first-of-type').on('click',function(){ if(--iteration < 0) iteration = $images.length-1; update(); });
+    $('#slider > i:last-of-type').on('click',next);
+    update();
+    if($images.length > 1) setInterval(next,8000);
+  });
+</script>
+<section id='slider'>
+  <i class="fa fa-angle-left"></i>
+    <div class='slider-body'>
+      <% @slides.each do |slide| %>
+        <!-- <img src="<%= slide.image%>"> -->
+        <div class='slider-image' style='background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("<%= slide.image %>")'>
+          <div class='slider-content'>
+            <div class='slider-text-content'>
+            <h1><%= slide.header %></h1>
+            <h1><%= slide.sub_header %></h1>
+            <p><%= raw(slide.body) %></p>
+            <%= link_to(slide.button_name, slide.url) %>
+          </div>
+          </div>
+          <!-- <a href="<%= slide.url %>"><button><%= slide.button_name %></button> -->
+        </div>
+      <% end %>
+    </div>
+  <i class="fa fa-angle-right"></i>
+</section>
+
+  <section id='products'>
+    <hr class="split">
+    <h1>New Products</h1>
+    <!-- <div> -->
+    <% @recent.each do |product| %>
+      <%= render partial: "products/small", locals: {product:product} %>
+      <!-- <hr> -->
+    <% end %>
+  <!-- </div> -->
+  </section>
+<section id='content'>
+  <section id="social-content">
+    <!-- <div id="facebook">
+      <div class="fb-page" data-href="https://www.facebook.com/prolevelwear" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/prolevelwear"><a href="https://www.facebook.com/prolevelwear">Prolevel Professional Gaming Wear</a></blockquote></div></div>
+    </div> -->
+    <div id="twitter">
+      <a class="twitter-timeline" href="https://twitter.com/prolevelwear" data-widget-id="684914629026291712" data-chrome="transparent noscrollbar ">Tweets by @prolevelwear</a>
+    </div>
+  </section>
+</section>
+<!-- Twitter Shit -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

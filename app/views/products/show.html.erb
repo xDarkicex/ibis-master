@@ -1,0 +1,49 @@
+<section id='product-info'>
+  <section id='product-image'>
+    <div id='csssucks'>
+      <aside id='image-selector'>
+        <% @product.images.each do |image| %>
+          <img src="<%= image.asset(:thumb) %>" data-full="<%= image.asset %>">
+        <% end %>
+      </aside>
+    </div>
+    <img id="selected-image" src="<%= @product.images[0].asset %>>">
+  </section>
+  <div id='product-description'>
+    <h1><%= @product.name %></h1>
+    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+    <br/>
+    <!-- <br/> -->
+    <div id='inner-description'>
+      <%= raw(@product.description) %>
+    </div>
+    <span><%= get_price_range(@product) %></span>
+  </div>
+</section>
+<%= render "products/form", locals:{product:@product} %>
+<script>
+  $(function(){
+    $selector = $('#image-selector');
+    $selected = $('#selected-image');
+    $selector.on('click',function(e){
+      $selected.attr('src', $(e.target).attr('data-full'));
+    });
+
+
+    $('#selected-image').elevateZoom({
+    // zoomType: "inner",
+gallery:'image-selector',
+galleryActiveClass: 'active',
+cursor: "crosshair",
+tint:true,
+tintColour: '#222',
+tintOpacity: 0.5,
+scrollZoom : true,
+zoomWindowWidth:250,
+zoomWindowHeight:250,
+zoomWindowFadeIn: 500,
+zoomWindowFadeOut: 750
+   });
+
+  });
+</script>

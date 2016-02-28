@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <title>ProLevelWear | Professional Gaming wear</title>
+  <% @meta.each do |tag| %> <meta name="<%= tag.name %>" content="<%= tag.content %>"> <% end %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body>
+  <img src='<%= image_path("logo.png") %>' id='logo'>
+  <header>
+    <section class="mobile-menu">
+      <a id="nav-toggle" href="#"><span></span></a>
+    </section>
+    <section class="mobile-menu-wrapper">
+        <nav class="mobile">
+          <ul>
+            <li><%= link_to "<span>Prolevel Gaming</span>".html_safe, main_app.root_url %></li>
+            <li><%= link_to "<span>Products</span>".html_safe, main_app.products_url %></li>
+            <% @nav.each do |page| %>
+              <li><%= link_to "<span>#{page.title}</span>".html_safe, Rails.application.routes.url_helpers.page_path(page) %></li>
+            <% end %>
+            <li>
+              <% cart = Piggybak::Cart.new(request.cookies["cart"]) %>
+              <a href="<%= piggybak.cart_url %>"><span><i class='fa fa-shopping-cart'></i> Cart <%= number_to_currency(cart.total) %></span></a>
+            </li>
+        </ul>
+        </nav>
+    </section>
+
+    <nav>
+      <ul id="top-level">
+        <li><%= link_to "<span>Prolevel Gaming</span>".html_safe, main_app.root_url %></li>
+        <li class="products-drop"><%= link_to "<span>Products</span>".html_safe, main_app.products_url %><ul class="sub-level">
+            <li><%= link_to "<span>NEW</span>".html_safe, main_app.products_url %></li>
+            <li><%= link_to "<span>Hoodies</span>".html_safe, main_app.products_url(:gender => "true") %></li>
+            <li><%= link_to "<span>Performance Shirts</span>".html_safe, main_app.products_url(:gender => "false") %></li>
+            <li><%= link_to "<span>Jersey</span>".html_safe, main_app.products_url %></li>
+            <li><%= link_to "<span>Head Gear</span>".html_safe, main_app.products_url %></li>
+          </ul>
+        </li>
+        <% @nav.each do |page| %>
+          <li><%= link_to "<span>#{page.title}</span>".html_safe, Rails.application.routes.url_helpers.page_path(page) %></li>
+        <% end %>
+        <% if user_signed_in? %>
+          <li><%= link_to("<span>Logout</span>".html_safe, main_app.destroy_user_session_path, :method => :delete) %>  </li>
+        <% else %>
+          <li><%= link_to "<span>Login</span>".html_safe, main_app.new_user_session_path %></li>
+        <% end %>
+        <li>
+          <% cart = Piggybak::Cart.new(request.cookies["cart"]) %>
+          <a href="<%= piggybak.cart_url %>"><span><i class='fa fa-shopping-cart'></i> Cart <%= number_to_currency(cart.total) %></span></a>
+        </li>
+      </ul>
+    </nav>
+
+  </header>
+  <!-- <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p> -->
+  <main>
+    <%= yield %>
+
+  </main>
+      <footer>
+        <div class="footer">
+          <section>
+            <h3>CONNECT WITH US:</h3>
+            <a href="tel:5595454534">559-545-4534</a><br/>
+            <a href="https://www.facebook.com/prolevelwear"><i class="fa fa-2x fa-facebook"></i></a>
+            <a href="https://www.twitter.com/prolevelwear"><i class="fa fa-2x fa-twitter"></i></a>
+          </section>
+        </div>
+        <% if !admin_signed_in? %>
+          <%= link_to 'Login as Admin', main_app.new_admin_session_path %>
+        <% else %>
+          <%= link_to 'Admin Panel', rails_admin.dashboard_path %>
+        <% end %>
+      </footer>
+
+</body>
+<!-- Facebook Shit -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=748936895238713";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+  $(function(){$('#nav-toggle').click(function(){
+    $('#nav-toggle').toggleClass('active');
+    $('.mobile').toggleClass('drawer');
+    $('#logo').toggleClass('drawer');
+  })});
+</script>
+</html>

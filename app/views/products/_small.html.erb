@@ -1,0 +1,25 @@
+<a href="<%= product_path(product) %>">
+  <article class="product">
+    <div class="product-image">
+      <%= image_tag product.images[0].asset(:medium) %>
+    </div>
+    <div class="product-info">
+      <h1><%= product.name %></h1>
+      <span><%= get_price_range(product) %></span>
+      <!-- <span class='fancy-button'>Buy</span> -->
+    </div>
+  </article>
+</a>
+
+<!-- <script>
+  var variant_map = <%= raw(variant_map_local(product)) %>;
+  console.log(variant_map);
+  var lowest = 0;
+  var highest = 0;
+  for(var key in variant_map) {
+    var price = variant_map[key].raw_price;
+    console.log(price+' - '+lowest+'/'+highest);
+    if((!lowest) || (price < lowest)) lowest = price;
+    if((!highest) || (price > highest)) { highest = price; }
+  }
+</script> -->
