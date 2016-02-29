@@ -1,0 +1,23 @@
+@import "variables";
+// This file is for fancy elements that we're going to keep using.\
+
+// Anything, really.
+.fancy-button,
+// This is the remove link on cart
+#cart > form > table > tbody > tr > td > a,
+// Buy button
+#checkout
+{
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px 20px;
+  text-align: center;
+  border: 1px solid white;
+  color: white;
+  &:hover {
+    background-color: $accentColor;
+    border: 1px solid $accentColor;
+  }
+}
+a, a:hover, a:active, a:focus {
+  outline: transparent !important; }

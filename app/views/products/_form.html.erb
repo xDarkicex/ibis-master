@@ -10,7 +10,7 @@
           // console.log("selected_key: "+selected_key);
           // console.log(variant_map[selected_key]);
     			if(variant_map[selected_key]) {
-            console.log("Ayy lmao");
+            // console.log("Ayy lmao");
     				$('.variant_options form').show();
     				$('#sellable_id').val(variant_map[selected_key].id);
     				$('#variant_price span').html(variant_map[selected_key].price);
@@ -76,7 +76,7 @@
 		<input type="hidden" id="sellable_id" name="sellable_id" />
 		<div id="variant_price">Price: <span></span></div>
 		<label for="quantity">Quantity</label>
-		<%= text_field_tag :quantity, 1 %>
+		<%= number_field_tag :quantity, 1 %>
 		<%= submit_tag "Add to Cart", :id => "submit" %>
 	<% end -%>
 </div>

@@ -27,23 +27,9 @@
     $selected = $('#selected-image');
     $selector.on('click',function(e){
       $selected.attr('src', $(e.target).attr('data-full'));
+      $selected.attr('data-magnify-src', $(e.target).attr('data-full'));
+      $selected.magnify();
     });
-
-
-    $('#selected-image').elevateZoom({
-    // zoomType: "inner",
-gallery:'image-selector',
-galleryActiveClass: 'active',
-cursor: "crosshair",
-tint:true,
-tintColour: '#222',
-tintOpacity: 0.5,
-scrollZoom : true,
-zoomWindowWidth:250,
-zoomWindowHeight:250,
-zoomWindowFadeIn: 500,
-zoomWindowFadeOut: 750
-   });
-
+    // $selected.load();
   });
 </script>
